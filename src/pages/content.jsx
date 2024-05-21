@@ -17,6 +17,7 @@ import Permissions from './permissions/permissions';
 import Comments from './comments/comments';
 import Questions from './questions/questions';
 import Logout from './auth/logout';
+import CategoryChildren from './category/categoryChildren';
 
 const Content = () => {
 
@@ -26,7 +27,9 @@ const Content = () => {
         <section id="content_section" className={`bg-light py-2 px-3 ${showSidebar ? "with_sidebar" : null }`}>
         <Routes>
           <Route path='/' element={<Dashboard/>}/>
-          <Route path='/categories' element={<Category/>}/> 
+          <Route path='/categories' element={<Category/>}>
+            <Route path=':categoryId' element={<CategoryChildren/>}/>
+          </Route> 
           <Route path='/products' element={<Product/>}/>
           <Route path='/colors' element={<Colors/>}/>
           <Route path='/guaranties' element={<Guaranties/>}/>
@@ -41,7 +44,6 @@ const Content = () => {
           <Route path='/comments' element={<Comments/>}/>
           <Route path='/questions' element={<Questions/>}/>
           <Route path='/logout' element={<Logout/>}/>
-
 
           <Route path='*' element={<Dashboard/>}/>  
         </Routes>   

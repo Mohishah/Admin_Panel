@@ -5,21 +5,23 @@ import { getCategoriesService } from '../../services/category';
 import { Alert } from '../../utils/alert';
 import ShowInMenu from './tableAdditons/showInMenu';
 import Actions from './tableAdditons/actions';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { convertDateToJalali } from '../../utils/convertDate';
 
 const CategoryTable = () => {
+
+    const params = useParams()
+    const location = useLocation()
 
     const [data,setData] = useState([])
 
     const handleGetCategories = async ()=>{
       try {
-        const res = await getCategoriesService()
+        const res = await getCategoriesService(params.categoryId)
         if (res.status === 200){
           setData(res.data.data)
-        }else{
-          Alert('مشکلی رخ داد', res.data.message ,'error')
         }
       } catch (error) {
-          Alert('مشکلی رخ داد', 'مشکلی از سمت سرور' ,'error')
       }
     }
 
@@ -31,10 +33,13 @@ const CategoryTable = () => {
       { field: "id", title: "#" },
       { field: "title", title: "عنوان محصول" },
       { field: "parent_id", title: "والد" },
-      { field: "created_at", title: "تارخ" },
     ];
 
     const additionField = [
+      {
+        title: "تاریخ",
+        elements: (rowData) => convertDateToJalali(rowData.created_at),
+      },
       {
         title: "نمایش در منو",
         elements: (rowData) => <ShowInMenu rowData={rowData}/>,
@@ -53,11 +58,17 @@ const CategoryTable = () => {
 
     return ( 
         <>
-            <PaginatedTable data={data} dataInfo={dataInfo}
-            additionField={additionField} searchParams={searchParams}
-            numOfPage={3}
-            children={<AddCategory/>}
-            />
+            <Outlet/>
+            {data.length? (
+              <PaginatedTable data={data} dataInfo={dataInfo}
+              additionField={additionField} searchParams={searchParams}
+              numOfPage={10}
+              children={<AddCategory/>}
+              />
+            ) : (
+              <h5 className="text-center my-5 text-danger">هیچ دسته بندی یافت نشد</h5>
+            )}
+            
         </>
     );
 }

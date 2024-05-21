@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-
 const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchParams}) => {
 
     const [tableData,setTableData]=useState([])
