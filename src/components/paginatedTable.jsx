@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import SpinnerLoad from './spinnerLoad';
 
-const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchParams}) => {
+const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchParams,loading}) => {
 
     const [tableData,setTableData]=useState([])
     const [currentPage,setCurrentPage]=useState(1)
@@ -44,6 +45,11 @@ const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchPa
                     {children}
                 </div>
             </div>
+            {
+                loading ? (
+                    <SpinnerLoad colorClass="text-danger"/> 
+                ) :    
+                data.length ? (
             <table className="table table-responsive text-center table-hover table-bordered">
                 <thead className="table-secondary">
                     <tr>
@@ -74,6 +80,10 @@ const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchPa
                     ))}
                 </tbody>
             </table>
+                ) : (
+                    <h5 className="text-center my-5 text-danger">هیچ دسته بندی یافت نشد</h5>
+                )
+            }
             {
                 pages.length > 1 ? (
                 <nav aria-label="Page navigation example" className="d-flex justify-content-center">
@@ -95,7 +105,7 @@ const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchPa
                         </li>
                     </ul>
                 </nav>
-                ) : null
+                ) : null 
             }
             
         </>
