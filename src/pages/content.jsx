@@ -18,6 +18,7 @@ import Comments from './comments/comments';
 import Questions from './questions/questions';
 import Logout from './auth/logout';
 import CategoryChildren from './category/categoryChildren';
+import CaregoryAttribute from './category/attr/caregoryAttribute';
 
 const Content = () => {
 
@@ -29,7 +30,8 @@ const Content = () => {
           <Route path='/' element={<Dashboard/>}/>
           <Route path='/categories' element={<Category/>}>
             <Route path=':categoryId' element={<CategoryChildren/>}/>
-          </Route> 
+          </Route>
+          <Route path='/categories/:categoryId/attributes' element={<CaregoryAttribute/>}/> 
           <Route path='/products' element={<Product/>}/>
           <Route path='/colors' element={<Colors/>}/>
           <Route path='/guaranties' element={<Guaranties/>}/>

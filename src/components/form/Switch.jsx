@@ -9,7 +9,7 @@ const Switch = ({name, label}) => {
           type="checkbox"
           name={name}
         />
-        <label className="form-check-label">{label}</label>
+        <label className="form-check-label text-primary">{label}</label>
       </div>
     );
 }

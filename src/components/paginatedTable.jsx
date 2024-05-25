@@ -26,7 +26,7 @@ const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchPa
     },[currentPage , initData])
 
     useEffect(()=>{
-        setInitData(data.filter(d=>d[searchParams.searchfield].includes(searchChar)))
+        setInitData(data.filter(d=>d[searchParams.searchField].includes(searchChar)))
         setCurrentPage(1)
     },[searchChar , data])
  
@@ -81,7 +81,7 @@ const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchPa
                 </tbody>
             </table>
                 ) : (
-                    <h5 className="text-center my-5 text-danger">هیچ دسته بندی یافت نشد</h5>
+                    <h5 className="text-center my-5 text-danger">هیچ رکوردی یافت نشد</h5>
                 )
             }
             {

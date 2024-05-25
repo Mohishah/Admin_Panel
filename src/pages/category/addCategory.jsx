@@ -21,7 +21,6 @@ const initialValues = {
 };
 
 const onSubmit = async (values, actions, setForceRender, editId) => {
-  console.log(editId);
   try {
     values = {
       ...values,
