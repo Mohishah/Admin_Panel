@@ -1,52 +1,86 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ModalContainer from '../../components/modalContainer';
+import {Formik, Form} from 'formik'
+import { initialValues, onSubmit, validationSchema } from './core';
+import FormikControl from '../../components/form/FormikControl';
+import SubmitButton from '../../components/form/submitButton';
+import { apiPath } from '../../services/httpService';
 
-const Addbrands = () => {
+const Addbrands = ({setData,brandToEdit,setBrandToEdit}) => {
+
+    const [reInitialvalues,setReInitialvalues] = useState(null)
+
+    useEffect(()=>{
+        if(brandToEdit) setReInitialvalues({
+            original_name: brandToEdit.original_name,
+            persian_name: brandToEdit.persian_name || "",
+            descriptions: brandToEdit.descriptions || "",
+            logo: null,
+        })
+        else setReInitialvalues(null)
+    },[brandToEdit])
+
     return (
         <>
-            <button className="btn btn-success d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#add_brand_modal">
+            <button className="btn btn-success d-flex justify-content-center align-items-center" 
+            data-bs-toggle="modal" data-bs-target="#add_brand_modal" onClick={()=>setBrandToEdit(null)}>
                 <i className="fas fa-plus text-light"></i>
             </button>
             <ModalContainer
             fullScreen={false}
-            title="افزودن برند"
+            title={brandToEdit ? "ویرایش برند" : "افزودن برند"}
             id="add_brand_modal"
             >
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="input-group my-3 dir_ltr">
-                                <input type="text" class="form-control" placeholder="کیبرد را در حالت لاتین قرار دهید"/>
-                                <span class="input-group-text w_8rem justify-content-center">عنوان لاتیتن برند</span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="input-group my-3 dir_ltr">
-                                <input type="text" class="form-control" placeholder="کیبرد را در حالت فارسی قرار دهید"/>
-                                <span class="input-group-text w_8rem justify-content-center">عنوان فارسی برند</span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="input-group my-3 dir_ltr">
-                                <input type="text" class="form-control" placeholder="متن کوتاه در مورد برند"/>
-                                <span class="input-group-text w_8rem justify-content-center">توضیحات برند</span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="input-group mb-3 dir_ltr">
-                                <input type="file" class="form-control" placeholder="تصویر"/>
-                                <span class="input-group-text w_6rem justify-content-center">تصویر</span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="input-group mb-3 dir_ltr">
-                                <input type="text" class="form-control" placeholder="یک کلمه در مورد تصویر"/>
-                                <span class="input-group-text w_6rem justify-content-center">توضیح تصویر</span>
-                            </div>
-                        </div>                                              
-                        <div class="btn_box text-center col-12 col-md-6 col-lg-8 mt-4">
-                            <button class="btn btn-primary ">ذخیره</button>
-                        </div>
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <Formik
+                        initialValues={reInitialvalues || initialValues}
+                        onSubmit={(values, actions)=>onSubmit(values, actions, setData , brandToEdit)}
+                        validationSchema={validationSchema}
+                        enableReinitialize
+                        >
+                            <Form>
+                                <FormikControl
+                                    control="input"
+                                    type="text"
+                                    name="original_name"
+                                    label="عنوان لاتین"
+                                    placeholder="کیبرد را در حالت لاتین قرار دهید"
+                                />
+                                <FormikControl
+                                    control="input"
+                                    type="text"
+                                    name="persian_name"
+                                    label="عنوان فارسی"
+                                    placeholder="کیبرد را در حالت فارسی قرار دهید"
+                                />
+                                <FormikControl
+                                    control="textarea"
+                                    name="descriptions"
+                                    label="توضیحات"
+                                    placeholder="توضیحات"
+                                />
+                                {
+                                    brandToEdit ? (
+                                        <div className='btn-box text-center col-12 py-3'>
+                                            <img src={apiPath+"/"+brandToEdit.logo} width="60px" alt='logo'/>
+                                        </div>
+                                    ) : null
+                                }
+                                <FormikControl
+                                    control="file"
+                                    name="logo"
+                                    label="تصویر"
+                                    placeholder="تصویر"
+                                />
+                                
+
+                                <div className="btn_box text-center col-12">
+                                    <SubmitButton />
+                                </div>
+                            </Form>
+                        </Formik>
+
                     </div>
                 </div>
             </ModalContainer>

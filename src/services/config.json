@@ -1,3 +1,4 @@
 {
-    "onLineApi" : "https://ecomadminapi.azhadev.ir/api"
+    "onlinePath" : "https://ecomadminapi.azhadev.ir",
+    "offlinePath" : "http://127.0.0.1:8000"
 }
