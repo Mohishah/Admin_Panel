@@ -15,7 +15,7 @@ const Addbrands = ({setData,brandToEdit,setBrandToEdit}) => {
             original_name: brandToEdit.original_name,
             persian_name: brandToEdit.persian_name || "",
             descriptions: brandToEdit.descriptions || "",
-            logo: null,
+            logo: '',
         })
         else setReInitialvalues(null)
     },[brandToEdit])

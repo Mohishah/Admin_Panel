@@ -6,7 +6,7 @@ export const initialValues = {
   original_name: "",
   persian_name: "",
   descriptions: "",
-  logo: null
+  logo: ''
 };
 
 export const onSubmit = async (values, actions, setData , brandToEdit) => {
@@ -21,7 +21,6 @@ export const onSubmit = async (values, actions, setData , brandToEdit) => {
         newData[index] = res.data.data
         return newData
       })
-      actions.resetForm();
     }
   } else {
     const res = await addNewBrandService(values);
