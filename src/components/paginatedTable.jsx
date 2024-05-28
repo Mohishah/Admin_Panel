@@ -3,6 +3,7 @@ import SpinnerLoad from './spinnerLoad';
 
 const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchParams,loading}) => {
 
+    const pageRange = 3  
     const [tableData,setTableData]=useState([])
     const [currentPage,setCurrentPage]=useState(1)
     const [pages,setPages]=useState([])
@@ -88,21 +89,46 @@ const PaginatedTable = ({children,data,dataInfo,numOfPage,additionField,searchPa
                 pages.length > 1 ? (
                 <nav aria-label="Page navigation example" className="d-flex justify-content-center">
                     <ul className="pagination dir_ltr">
+
                         <li className="page-item">
                             <span className={`page-link pointer ${currentPage === 1 ? "disabled" : "" }`}  aria-label="Previous" onClick={()=>setCurrentPage(currentPage - 1)}>
                                 <span aria-hidden="true">&raquo;</span>
                             </span>
-                         </li>
+                        </li>
+
+                        {currentPage > pageRange ? (
+                            <li className="page-item ">
+                                <span className="page-link pointer" onClick={() => setCurrentPage(1)}>
+                                    1
+                                </span>
+                            </li>
+                        ) : null }
+
                         {
-                            pages.map(page=>(
-                                <li key={page} className="page-item"><span className={`page-link ${currentPage === page ? "alert-success" : "" }`} onClick={()=>setCurrentPage(page)}>{page}</span></li>
-                            ))
+                            pages.map(page=>{
+                                return page < currentPage + pageRange && page > currentPage - pageRange ? (
+                                <li key={page} className="page-item">
+                                    <span className={`page-link ${currentPage === page ? "alert-success" : "" }`} onClick={()=>setCurrentPage(page)}>
+                                        {page}
+                                    </span>
+                                </li> ) : null
+                            })
                         }
+
+                        {currentPage <= pageCount - pageRange ? (
+                            <li className="page-item ">
+                                <span className="page-link pointer" onClick={() => setCurrentPage(pageCount)}>
+                                    {pageCount}
+                                </span>
+                            </li>
+                        ) : null}
+
                         <li className="page-item">
                             <span className={`page-link pointer ${currentPage === pageCount ? "disabled" : "" }`} aria-label="Next" onClick={()=>setCurrentPage(currentPage + 1)}>
                                 <span aria-hidden="true">&laquo;</span>
                             </span>
                         </li>
+
                     </ul>
                 </nav>
                 ) : null 
