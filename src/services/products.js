@@ -17,3 +17,7 @@ export const createNewProductService = (data)=>{
 export const editProductService = (productId, data)=>{
   return httpService(`/admin/products/${productId}`, 'put', data)
 }
+
+export const addProductAttrService = (productId, data)=>{
+  return httpService(`/admin/products/${productId}/add_attr`, 'post', data)
+}
