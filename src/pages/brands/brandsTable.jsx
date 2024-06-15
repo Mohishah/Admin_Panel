@@ -48,15 +48,14 @@ const BrandsTable = () => {
         { field: "original_name", title: "عنوان لاتین" },
         { field: "persian_name", title: "عنوان فارسی" },
         { field: "descriptions", title: "توضیحات" },
-    ];
-
-    const additionField = [
         {
+          field: null,
           title: "لوگو",
           elements: (rowData) =>
             rowData.logo ? (<img src={apiPath+"/"+rowData.logo} width="40" alt='logo' /> ): null,
         },
         {
+          field: null,
           title: "عملیات",
           elements: (rowData) => <Actions rowData={rowData} setBrandToEdit={setBrandToEdit} handleDeleteBrand={handleDeleteBrand} />,
         },
@@ -72,7 +71,6 @@ const BrandsTable = () => {
         <>
             <PaginatedTable
             data={data} dataInfo={dataInfo}
-            additionField={additionField} 
             numOfPage={10} searchParams={searchParams}
             loading={loading}
             >

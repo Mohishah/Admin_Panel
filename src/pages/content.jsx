@@ -22,6 +22,7 @@ import CaregoryAttribute from './category/attr/caregoryAttribute';
 import AddProduct from './product/addProduct';
 import ProductAttribute from './product/setAttr/productAttribute';
 import ProductGallery from './product/gallery/productGallery';
+import AddDiscount from './discount/addDiscount';
 
 const Content = () => {
 
@@ -42,7 +43,9 @@ const Content = () => {
           <Route path='/colors' element={<Colors/>}/>
           <Route path='/guaranties' element={<Guaranties/>}/>
           <Route path='/brands' element={<Brands/>}/>
-          <Route path='/discount' element={<Discount/>}/>
+          <Route path='/discount' element={<Discount/>}>
+              <Route path='add-discount-code' element={<AddDiscount/>}/>
+          </Route>
           <Route path='/card' element={<Card/>}/>
           <Route path='/orders' element={<Orders/>}/>
           <Route path='/delivery' element={<Delivery/>}/>

@@ -79,14 +79,13 @@ const CaregoryAttribute = () => {
         { field: "id", title: "#" },
         { field: "title", title: "عنوان محصول" },
         { field: "unit", title: "واحد" },
-    ];
-
-    const additionField = [
         {
+          field: null,
           title: "نمایش در فیلتر",
           elements: (rowData) => <ShowInFilter rowData={rowData} />,
         },
         {
+          field: null,
           title: "عملیات",
           elements: (rowData) => <AttrAction rowData={rowData} attrToEdit={attrToEdit} setAttrToEdit={setAttrToEdit}
           handleDeleteCategoryAttr={handleDeleteCategoryAttr}/>,
@@ -203,7 +202,7 @@ const CaregoryAttribute = () => {
                         <hr className='text-light'/>
 
                         <PaginatedTable data={data} dataInfo={dataInfo}
-                        additionField={additionField} searchParams={searchParams}
+                        searchParams={searchParams}
                         numOfPage={10}
                         loading={loading}
                         >
