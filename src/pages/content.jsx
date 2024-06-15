@@ -21,6 +21,7 @@ import CategoryChildren from './category/categoryChildren';
 import CaregoryAttribute from './category/attr/caregoryAttribute';
 import AddProduct from './product/addProduct';
 import ProductAttribute from './product/setAttr/productAttribute';
+import ProductGallery from './product/gallery/productGallery';
 
 const Content = () => {
 
@@ -37,6 +38,7 @@ const Content = () => {
           <Route path='/products' element={<Product/>}/>
           <Route path='/products/add-product' element={<AddProduct/>}/>
           <Route path='/products/add-attr' element={<ProductAttribute/>}/>
+          <Route path='/products/gallery' element={<ProductGallery/>}/>
           <Route path='/colors' element={<Colors/>}/>
           <Route path='/guaranties' element={<Guaranties/>}/>
           <Route path='/brands' element={<Brands/>}/>
