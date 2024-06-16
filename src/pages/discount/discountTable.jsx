@@ -4,12 +4,12 @@ import PaginatedTable from '../../components/paginatedTable';
 import AddButtonLink from '../../components/AddButtonLink';
 import {Outlet} from 'react-router-dom'
 import Actions from './tableAddition/Actions';
-import { getAllDiscountsService } from '../../services/discounts';
+import { deleteDiscountService, getAllDiscountsService } from '../../services/discounts';
+import { Alert, Confirm } from '../../utils/alert';
 
 const DiscountTable = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [codeToEdit, setCodeToEdit] = useState(null)
 
   const dataInfo = [
     { field: "id", title: "#" },
@@ -34,8 +34,7 @@ const DiscountTable = () => {
     {
       field: null,
       title: "عملیات",
-      elements: (rowData) => <Actions rowData={rowData}/>,
-    },
+      elements: (rowData) => <Actions rowData={rowData} handleDeleteDiscount={handleDeleteDiscount}/>,    },
   ];
 
   const searchParams = {
@@ -53,6 +52,17 @@ const DiscountTable = () => {
     }
   }
 
+
+  const handleDeleteDiscount = async (discount)=>{
+    if (await Confirm(discount.title, 'آیا از حذف این کد تخفیف اطمینان دارید؟')) {
+      const res = await deleteDiscountService(discount.id)
+      if (res.status === 200) {
+        Alert('حذف شد...!', res.data.message, 'success');
+        setData(old=> old.filter(d => d.id != discount.id))
+      }
+    }
+  }
+
   useEffect(()=>{
     handleGetAllDiscounts()
   },[])
@@ -66,7 +76,7 @@ const DiscountTable = () => {
         loading={loading}
       >
         <AddButtonLink href={"/discount/add-discount-code"} />
-        <Outlet />
+        <Outlet context={{setData}}/>
       </PaginatedTable>
     );
 }

@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 
 const ModalContainer = ({children,id,fullScreen,title,className,closeFunction}) => {
     return createPortal(
-    <div className={`modal fade ${className || ""}`} id={id} tabIndex="-1" aria-hidden="true">
-        <div className={`modal-dialog ${fullScreen ? "modal-fullscreen" : "" }`}>
+    <div className={`modal fade back_smoke animate__animated animate__fadeIn animate__fast ${className || ""}`} id={id} tabIndex="-1" aria-hidden="true">
+        <div className={`modal-dialog animate__animated animate__fadeInDown animate__fast ${fullScreen ? "modal-fullscreen" : "" }`}>
             <div className="modal-content">
             <div className="modal-header">
                 <h5 className="modal-title flex-fill" id="exampleModalLabel">{title}</h5>
