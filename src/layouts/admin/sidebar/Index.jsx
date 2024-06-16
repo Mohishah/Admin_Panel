@@ -15,6 +15,7 @@ const Index = () => {
                 <Avatar name="محمد فراهانی" imagePath="/assets/images/hoosh1.jpeg"/>
                 <SidebarItem targetPath="/" icon="fas fa-tachometer-alt" title="داشبورد"/>
                 {/* <!-- =================================== --> */}
+                <div className="sidebar_items_container">
                 <SidebarGroupTitle title="فروشگاه"/>
                 <SidebarItem targetPath="/categories" icon="fas fa-stream" title="مدیریت گروه محصول"/>
                 <SidebarItem targetPath="/products" icon="fas fa-cube" title="مدیریت محصول"/>
@@ -36,6 +37,7 @@ const Index = () => {
                 <SidebarGroupTitle title="ارتباطات"/>
                 <SidebarItem targetPath="/questions" icon="fas fa-question-circle " title="سوال ها"/>
                 <SidebarItem targetPath="/comments" icon="fas fa-comment" title="نظرات"/>
+                </div>
             </div>
         </div>
     </section>
