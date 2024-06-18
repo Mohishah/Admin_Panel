@@ -24,6 +24,7 @@ import ProductAttribute from './product/setAttr/productAttribute';
 import ProductGallery from './product/gallery/productGallery';
 import AddDiscount from './discount/addDiscount';
 import AddRoles from './roles/addRoles';
+import AddUsers from './users/addUsers';
 
 const Content = () => {
 
@@ -50,7 +51,9 @@ const Content = () => {
           <Route path='/card' element={<Card/>}/>
           <Route path='/orders' element={<Orders/>}/>
           <Route path='/delivery' element={<Delivery/>}/>
-          <Route path='/users' element={<Users/>}/>
+          <Route path='/users' element={<Users/>}>
+              <Route path='add-user' element={<AddUsers/>}/>
+          </Route>
           <Route path='/roles' element={<Roles/>}>
             <Route path='add-role' element={<AddRoles/>}/>
           </Route>
