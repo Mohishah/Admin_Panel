@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ModalContainer from '../../components/modalContainer';
-import {useLocation, useNavigate, useOutletContext} from 'react-router-dom';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import {Formik, Form} from 'formik';
 import { initialValues, onSubmit, validationSchema } from './core';
 import FormikControl from '../../components/form/FormikControl';

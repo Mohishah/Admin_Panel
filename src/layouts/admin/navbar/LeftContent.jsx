@@ -1,12 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const LeftContent = () => {
+    const user = useSelector(state=>state.userReducer.data)
     return (
         <div className="left_content d-flex flex-row-reverse">
             <i className="fas fa-grip-vertical fa-2x me-3 pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
             <ul className="dropdown-menu mini_menu ms-2" aria-labelledby="dropdownMenuButton1">
-                <li className="my-2"><a className="dropdown-item d-block text-center">محمد فراهانی</a></li>
+                <li className="my-2"><a className="dropdown-item d-block text-center">{user.full_name || user.user_name}</a></li>
                 <li className="my-2 d-flex justify-content-center align-items-center px-2">
                     <i className="fas fa-tachometer-alt"></i>
                     <a className="dropdown-item" href="#">داشبورد</a>

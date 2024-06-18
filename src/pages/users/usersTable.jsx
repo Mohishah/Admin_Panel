@@ -91,7 +91,7 @@ const UsersTable = () => {
         handleSearch={handleSearch}
         >
           <AddButtonLink href={"/users/add-user"}/>
-          <Outlet ontext={{setData}}/>
+          <Outlet context={{setData}}/>
         </PaginatedDataTable>
     );
 }
