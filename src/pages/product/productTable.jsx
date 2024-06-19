@@ -4,6 +4,7 @@ import Actions from './tableAddition/Action';
 import { deleteProductService, getProductsService } from '../../services/products';
 import { Alert, Confirm } from '../../utils/alert';
 import { Link } from 'react-router-dom';
+import { useHasPermission } from '../../hook/permissionsHook';
 
 const ProductTable = () => {
 
@@ -13,6 +14,8 @@ const ProductTable = () => {
     const [currentPage,setCurrentPage] = useState(1) // صفحه حال حاضر
     const [countOnPage,setCountOnPage] = useState(10) // تعداد محصول در هر صفحه
     const [pageCount,setPageCount] = useState(0) // تعداد کل صفحات
+
+    const hasAddProductPerm = useHasPermission("create_product")
 
     const dataInfo = [
         { field: "id", title: "#" },
@@ -82,11 +85,13 @@ const ProductTable = () => {
        pageCount={pageCount}
        handleSearch={handleSearch}
        >
+       {hasAddProductPerm &&
         <Link to="/products/add-product">
           <span className="btn btn-success d-flex justify-content-center align-items-center">
               <i className="fas fa-plus text-light"></i>
           </span>
         </Link>
+        }
        </PaginatedDataTable>
     );
 }

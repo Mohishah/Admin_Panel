@@ -1,31 +1,46 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import ActionIcon from "../../../components/ActionIcon";
 const Actions = ({ rowData , handleDeleteProduct }) => {
-  const navigate = useNavigate()
+  const navigation = useNavigate()
   return (
     <>
-      <i
-        className="fas fa-edit text-warning mx-1 hoverable_text pointer has_tooltip"
+      <ActionIcon
+        icon="fas fa-edit text-warning"
+        pTitle="update_product"
         title="ویرایش محصول"
-        onClick={()=>navigate("/products/add-product", {state:{productToEdit : rowData}})}
-      ></i>
-      <i
-        className="fas fa-receipt text-info mx-1 hoverable_text pointer has_tooltip"
+        onClick={() =>
+          navigation("/products/add-product", {
+            state: { productToEdit: rowData },
+          })
+        }
+      />
+      <ActionIcon
+        icon="fas fa-receipt text-info"
+        pTitle="create_product_attr"
         title="ثبت ویژگی"
-        onClick={()=>navigate("/products/add-attr", {state:{selectedProduct : rowData}})}
-      ></i>
-      <i
-        className="fas fa-images text-success mx-1 hoverable_text pointer has_tooltip"
+        onClick={() =>
+          navigation("/products/set-attr", {
+            state: { selectedProduct: rowData },
+          })
+        }
+      />
+      <ActionIcon
+        icon="fas fa-images text-success"
+        pTitle="create_product_image"
         title="مدیریت گالری"
-        onClick={()=>navigate('/products/gallery', {state:{selectedProduct:rowData}})}
-      ></i>
-      <i
-        className="fas fa-times text-danger mx-1 hoverable_text pointer has_tooltip"
+        onClick={() =>
+          navigation("/products/gallery", {
+            state: { selectedProduct: rowData },
+          })
+        }
+      />
+      <ActionIcon
+        icon="fas fa-times text-danger"
+        pTitle="delete_product"
         title="حذف محصول"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        onClick={()=>handleDeleteProduct(rowData)}
-      ></i>
+        onClick={() => handleDeleteProduct(rowData)}
+      />
     </>
   );
 };

@@ -7,16 +7,16 @@ import Actions from './tableAdditons/actions';
 import { Outlet, useParams } from 'react-router-dom';
 import { convertDateToJalali } from '../../utils/convertDate';
 import { Alert, Confirm } from '../../utils/alert';
+import { useHasPermission } from '../../hook/permissionsHook';
 
 const CategoryTable = () => {
 
     const params = useParams()
-
     const [data,setData] = useState([])
-
     const [forceRender,setForceRender] = useState(0)
-
     const [loading,setLoading] = useState(false)
+
+    const hasAddCategoryPerm = useHasPermission("create_category")
 
     const handleDeleteCategory = async (rowData)=>{
       if (await Confirm('حذف دسته بندی', `آیا از حذف ${rowData.title} اطمینان دارید؟`)) {
@@ -84,7 +84,7 @@ const CategoryTable = () => {
               numOfPage={10}
               loading={loading}
               >
-                <AddCategory setForceRender={setForceRender}/>
+                {hasAddCategoryPerm && <AddCategory setForceRender={setForceRender}/>}
               </PaginatedTable>             
         </>
     );
