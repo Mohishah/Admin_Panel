@@ -13,7 +13,6 @@ export const createNewProductService = (data)=>{
   return httpService('/admin/products', 'post', data.image ? convertDataToFormdata(data) : data)
 }
 
-
 export const editProductService = (productId, data)=>{
   return httpService(`/admin/products/${productId}`, 'put', data)
 }
@@ -37,3 +36,9 @@ export const setMainProductImageService = (imageId)=>{
 export const getAllProductTitlesService = () => {
   return httpService(`/admin/products/all_titles`, "get");
 };
+
+export const getOneProductService = (productId)=>{
+  return httpService(`/admin/products/${productId}`, "get");
+}
+
+
