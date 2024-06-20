@@ -12,9 +12,9 @@ export const getSinglrCartService = (cartId)=>{
     return httpService(`/admin/carts/${cartId}`, "get")
 }
 
-//   export const editCartService = (cartId, data) => {
-//     return httpService(`/admin/carts/${cartId}`, "put", data);
-//   };
+  export const editCartService = (cartId, data) => {
+    return httpService(`/admin/carts/${cartId}`, "put", data);
+  };
 
 export const deleteCartService = (cartId) => {
     return httpService(`/admin/carts/${cartId}`, "delete");

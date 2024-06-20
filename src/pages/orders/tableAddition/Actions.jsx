@@ -1,24 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ActionIcon from "../../../components/ActionIcon";
-
-const Actions = ({ rowData, handleDeleteCart}) => {
-
+const Actions = ({ rowData, handleDeleteOrder}) => {
   const navigation = useNavigate()
-  
   return (
     <>
       <ActionIcon
-        icon="fas fa-edit text-warning"
-        pTitle="update_cart"
-        title="ویرایش سبد"
-        onClick={() => navigation("/carts/add-cart", { state: { cartId: rowData.id } })}
+        icon="fas fa-shopping-cart text-info"
+        pTitle="read_order"
+        title="  جزئیات سفارش"
+        onClick={() => navigation("/orders/add-order", { state: { orderId: rowData.id } })}
       />
       <ActionIcon
         icon="fas fa-times text-danger"
-        pTitle="delete_cart"
+        pTitle="delete_order"
         title="حذف سبد"
-        onClick={() => handleDeleteCart(rowData)}
+        onClick={() => handleDeleteOrder(rowData)}
       />
     </>
   );

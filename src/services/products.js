@@ -41,4 +41,10 @@ export const getOneProductService = (productId)=>{
   return httpService(`/admin/products/${productId}`, "get");
 }
 
+export const getFewerProductsService = ()=>{
+  return httpService(`/admin/products/fewer_products`, 'get')
+}
+export const toggleNotificationService = (productId)=>{
+  return httpService(`/admin/products/toggle_notification/${productId}`, 'get')
+}
 

@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react';
-import { setDashboardChart } from '../../utils/dashboardChart';
+import React from 'react';
 import Card from './card';
 import ProductTitle from './productTitle';
+import SaleChart from './SaleChart';
 
 const Dashboard = () => {
-
-    useEffect(()=>{
-        const labels = ['فروردین' , 'اردیبهشت', 'خرداد' , 'تیر' , 'مرداد' , 'شهریور' ,
-        'مهر' , 'آبان' , 'آذر' , 'دی' , 'بهمن' , 'اسفند'];
-    
-        const datapoints = [0, 20, 20, 60, 60, 120, 140, 120, 125, 105, 110, 150];
-
-        setDashboardChart(labels,datapoints)
-    },[])
 
     return (
         <div id="dashboard_section" className="dashboard_section main_section pt-5">
@@ -53,14 +44,8 @@ const Dashboard = () => {
             </div>
 
             <div className="row">
-                <div className="col-12 col-lg-6">
-                    <p className="text-center mt-3 text-white">محصولات رو به اتمام</p>
-                    <ProductTitle/>
-                </div>
-
-                <div className="col-12 col-lg-6">
-                    <canvas id="mychart" height="185"></canvas>
-                </div>
+                <ProductTitle/>
+                <SaleChart/>
             </div>
 
         </div>
